@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Park-and-Go</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon">🚗</div>
+        <div>
+          <h1>Park-and-Go</h1>
+          <p>Find spots, report issues, and get moving.</p>
+        </div>
+      </div>
+      <div class="feature-pill">Smart City Parking</div>
+    </header>
+
+    <main class="main">
+      <section class="intro-card">
+        <div class="intro-left">
+          <h2>Welcome to Park-and-Go</h2>
+          <p>
+            Switch between the Map and Reporting views to explore available parking spaces,
+            track lot status, and report parking problems instantly.
+          </p>
+        </div>
+        <div class="intro-right">
+          <div class="summary">
+            <div>
+              <strong>2x Faster</strong>
+              <p>Find spots in seconds.</p>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <p>Report any issue anytime.</p>
+            </div>
+            <div>
+              <strong>Live</strong>
+              <p>Map with real-time availability.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tabs-card">
+        <div class="tabs" role="tablist" aria-label="Homepage features">
+          <button class="tab active" data-tab="map" role="tab" aria-selected="true">🗺️ Map</button>
+          <button class="tab" data-tab="report" role="tab" aria-selected="false">📝 Reporting</button>
+        </div>
+
+        <div class="tab-panels">
+          <article class="tab-panel active" data-panel="map" role="tabpanel">
+            <div class="panel-header">
+              <div>
+                <h3>Map View</h3>
+                <p>See nearby parking zones, availability, and live pricing.</p>
+              </div>
+              <span class="chip">Live updates</span>
+            </div>
+            <div class="map-box">
+              <div class="map-overlay">Live Parking Map<br><small>(placeholder)</small></div>
+            </div>
+            <div class="panel-cards">
+              <div class="card"><strong>Zone A</strong><p>Available: 12/24</p></div>
+              <div class="card"><strong>Zone B</strong><p>Available: 5/24</p></div>
+              <div class="card"><strong>Zone C</strong><p>Available: 18/24</p></div>
+            </div>
+          </article>
+
+          <article class="tab-panel" data-panel="report" role="tabpanel" aria-hidden="true">
+            <div class="panel-header">
+              <div>
+                <h3>Reporting</h3>
+                <p>Report parking issues, blocked zones, and lot maintenance needs.</p>
+              </div>
+              <span class="chip chip-alt">Fast report</span>
+            </div>
+            <div class="report-grid">
+              <div class="report-card">
+                <h4>🚧 Report Problem</h4>
+                <p>Blocked parking, suspicious vehicles, or damaged spots.</p>
+                <button class="btn">Create report</button>
+              </div>
+              <div class="report-card">
+                <h4>📊 Issue Overview</h4>
+                <p>Track report status and response times from operations team.</p>
+                <button class="btn">View history</button>
+              </div>
+              <div class="report-card">
+                <h4>📍 Suggest Location</h4>
+                <p>Suggest a new parking area or better route signage.</p>
+                <button class="btn">Suggest</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

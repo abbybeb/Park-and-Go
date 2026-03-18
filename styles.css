@@ -1,0 +1,47 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color-scheme: light; }
+body { min-height: 100vh; background: linear-gradient(180deg, #f5f7ff 0%, #eef3ff 100%); color: #1f2937; line-height: 1.5; }
+.app-shell { width: min(1100px, 92vw); margin: 2rem auto; padding: 1rem; }
+.header { display: flex; justify-content: space-between; align-items: center; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 1rem 1.25rem; box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05); }
+.brand { display: flex; align-items: center; gap: 0.75rem; }
+.brand-icon { width: 42px; height: 42px; display: grid; place-items: center; font-size: 1.25rem; background: #e0e7ff; border-radius: 12px; }
+.brand h1 { font-size: 1.3rem; margin-bottom: 0.1rem; }
+.brand p { color: #4b5563; font-size: 0.85rem; }
+.feature-pill { background: #1d4ed8; color: white; border-radius: 999px; font-weight: 600; font-size: 0.75rem; padding: 0.35rem 0.85rem; }
+.main { margin-top: 1rem; display: grid; gap: 1rem; }
+.intro-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 1rem; padding: 1rem; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); }
+.intro-left h2 { font-size: 1.4rem; margin-bottom: 0.4rem; }
+.intro-left p { color: #4b5563; }
+.summary { display: flex; gap: 0.6rem; margin-top: 0.2rem; }
+.summary div { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 0.6rem 0.75rem; min-width: 0; }
+.summary strong { display: block; font-size: 0.95rem; }
+.summary p { margin-top: 0.25rem; font-size: 0.8rem; color: #6b7280; }
+.tabs-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); }
+.tabs { display: flex; border-bottom: 1px solid #e5e7eb; }
+.tab { flex: 1; padding: 0.85rem 1rem; border: none; background: transparent; cursor: pointer; color: #1f2937; font-weight: 600; border-bottom: 3px solid transparent; transition: all 0.15s ease; }
+.tab:hover { background: #f9fafb; }
+.tab.active { border-bottom: 3px solid #2563eb; color: #1d4ed8; background: #fff; }
+.tab-panels { padding: 1rem; }
+.tab-panel { display: none; animation: fadeIn 0.2s ease; }
+.tab-panel.active { display: block; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+.panel-header h3 { margin-bottom: 0.15rem; }
+.panel-header p { color: #4b5563; font-size: 0.9rem; }
+.chip { background: #dbeafe; color: #1e40af; border-radius: 999px; font-weight: 600; font-size: 0.75rem; padding: 0.3rem 0.65rem; }
+.chip-alt { background: #e0f2fe; color: #155e75; }
+.map-box { background: linear-gradient(180deg, #e2e8f0, #cbd5e1); border-radius: 14px; border: 1px dashed #94a3b8; min-height: 200px; display: grid; place-items: center; color: #334155; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.8rem; }
+.panel-cards { display: grid; grid-template-columns: repeat(3, minmax(110px, 1fr)); gap: 0.6rem; }
+.card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 0.7rem; background: #f9fafb; }
+.card strong { display: block; margin-bottom: 0.2rem; font-size: 0.92rem; }
+.report-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.65rem; }
+.report-card { border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; padding: 0.8rem; box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04); }
+.report-card h4 { margin-bottom: 0.3rem; font-size: 1rem; }
+.report-card p { color: #4b5563; margin-bottom: 0.5rem; font-size: 0.86rem; }
+.btn { border: none; border-radius: 8px; background: #2563eb; color: #fff; padding: 0.45rem 0.7rem; font-weight: 600; cursor: pointer; }
+.btn:hover { background: #1d4ed8; }
+@keyframes fadeIn { from { opacity: 0.2; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 900px) {
+  .intro-card { grid-template-columns: 1fr; }
+  .panel-cards, .report-grid { grid-template-columns: 1fr; }
+  .tabs { flex-wrap: wrap; }
+}
