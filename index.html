@@ -1,107 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Park-and-Go</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Park and Go</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Leaflet CSS for mapping -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.css" />
 </head>
 <body>
-  <div class="app-shell">
     <header class="header">
-      <div class="brand">
-        <div class="brand-icon">🚗</div>
-        <div>
-          <h1>Park-and-Go</h1>
-          <p>Find spots, report issues, and get moving.</p>
+        <div class="confetti"></div>
+        <div class="container">
+            <h1 class="title">🎉 Park and Go 🎉</h1>
+            <p class="tagline">Find parking in New Orleans with ease!</p>
         </div>
-      </div>
-      <div class="feature-pill">Smart City Parking</div>
     </header>
 
-    <main class="main">
-      <section class="intro-card">
-        <div class="intro-left">
-          <h2>Welcome to Park-and-Go</h2>
-          <p>
-            Switch between the Map and Reporting views to explore available parking spaces,
-            track lot status, and report parking problems instantly.
-          </p>
-        </div>
-        <div class="intro-right">
-          <div class="summary">
-            <div>
-              <strong>2x Faster</strong>
-              <p>Find spots in seconds.</p>
-            </div>
-            <div>
-              <strong>24/7</strong>
-              <p>Report any issue anytime.</p>
-            </div>
-            <div>
-              <strong>Live</strong>
-              <p>Map with real-time availability.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <main class="dashboard">
+        <div class="container">
+            <div class="dashboard-content">
+                <!-- Tab Navigation -->
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="map">Map</button>
+                    <button class="tab-button" data-tab="report">Report</button>
+                </div>
 
-      <section class="tabs-card">
-        <div class="tabs" role="tablist" aria-label="Homepage features">
-          <button class="tab active" data-tab="map" role="tab" aria-selected="true">🗺️ Map</button>
-          <button class="tab" data-tab="report" role="tab" aria-selected="false">📝 Reporting</button>
-        </div>
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <div id="map" class="tab-pane active">
+                        <div class="content-box">
+                            <h2>🗺️ Parking Locations in New Orleans</h2>
+                            <p>Click on any parking marker to view and submit availability reports. Colors indicate current parking status.</p>
+                            <div class="map-wrapper">
+                                <div id="map-container"></div>
+                                <div id="directions-panel" class="directions-panel hidden">
+                                    <div class="directions-header">
+                                        <button class="close-directions" id="close-directions">✕</button>
+                                        <h3 id="directions-title">Directions</h3>
+                                    </div>
+                                    <div class="directions-info">
+                                        <div id="directions-distance" class="direction-stat">
+                                            <span class="stat-label">Distance:</span>
+                                            <span id="distance-value">—</span>
+                                        </div>
+                                        <div id="directions-duration" class="direction-stat">
+                                            <span class="stat-label">Est. Time:</span>
+                                            <span id="duration-value">—</span>
+                                        </div>
+                                    </div>
+                                    <div id="directions-steps" class="directions-steps"></div>
+                                </div>
+                            </div>
+                            <div class="map-legend">
+                                <div class="legend-item">
+                                    <div class="legend-color grey"></div>
+                                    <span>No Reports</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color green"></div>
+                                    <span>Lots Available</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color yellow"></div>
+                                    <span>Some Available</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color red"></div>
+                                    <span>Full/None Available</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="tab-panels">
-          <article class="tab-panel active" data-panel="map" role="tabpanel">
-            <div class="panel-header">
-              <div>
-                <h3>Map View</h3>
-                <p>See nearby parking zones, availability, and live pricing.</p>
-              </div>
-              <span class="chip">Live updates</span>
+                    <div id="report" class="tab-pane">
+                        <div class="content-box">
+                            <h2>📊 Submit Parking Report</h2>
+                            <p>Help the community by reporting parking availability in your area.</p>
+                            <div class="report-form">
+                                <div class="form-group">
+                                    <label for="location-select">Select Location:</label>
+                                    <select id="location-select">
+                                        <option value="">-- Choose a location --</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Parking Availability:</label>
+                                    <div class="availability-buttons">
+                                        <button class="availability-btn green-btn" data-status="available">
+                                            🟢 Available
+                                        </button>
+                                        <button class="availability-btn yellow-btn" data-status="limited">
+                                            🟡 Limited
+                                        </button>
+                                        <button class="availability-btn red-btn" data-status="full">
+                                            🔴 Full
+                                        </button>
+                                    </div>
+                                </div>
+                                <button id="submit-report" class="submit-btn">Submit Report</button>
+                            </div>
+                            <div id="report-status" class="report-status" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="map-box">
-              <div class="map-overlay">Live Parking Map<br><small>(placeholder)</small></div>
-            </div>
-            <div class="panel-cards">
-              <div class="card"><strong>Zone A</strong><p>Available: 12/24</p></div>
-              <div class="card"><strong>Zone B</strong><p>Available: 5/24</p></div>
-              <div class="card"><strong>Zone C</strong><p>Available: 18/24</p></div>
-            </div>
-          </article>
-
-          <article class="tab-panel" data-panel="report" role="tabpanel" aria-hidden="true">
-            <div class="panel-header">
-              <div>
-                <h3>Reporting</h3>
-                <p>Report parking issues, blocked zones, and lot maintenance needs.</p>
-              </div>
-              <span class="chip chip-alt">Fast report</span>
-            </div>
-            <div class="report-grid">
-              <div class="report-card">
-                <h4>🚧 Report Problem</h4>
-                <p>Blocked parking, suspicious vehicles, or damaged spots.</p>
-                <button class="btn">Create report</button>
-              </div>
-              <div class="report-card">
-                <h4>📊 Issue Overview</h4>
-                <p>Track report status and response times from operations team.</p>
-                <button class="btn">View history</button>
-              </div>
-              <div class="report-card">
-                <h4>📍 Suggest Location</h4>
-                <p>Suggest a new parking area or better route signage.</p>
-                <button class="btn">Suggest</button>
-              </div>
-            </div>
-          </article>
         </div>
-      </section>
     </main>
-  </div>
 
-  <script src="script.js"></script>
+    <!-- Leaflet JS for mapping -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <!-- Leaflet Routing Machine JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
